@@ -15,7 +15,7 @@ public class InputView {
             System.out.println(REQUEST_VISIT_DAY);
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            System.out.println(Parser.REQUEST_VALUE_MESSAGE);
+            System.out.println(Parser.EMPTY_VALUE_MESSAGE);
             return requestVisitDay();
         }
     }
