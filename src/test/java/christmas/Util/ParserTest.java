@@ -21,6 +21,13 @@ public class ParserTest {
         assertThatThrownBy(() -> Parser.convertStringToMap(input)).isInstanceOf(
             IllegalArgumentException.class);
     }
+    @Test
+    @DisplayName("중복 메뉴 입력 테스트")
+    public void duplicateTest() {
+        String input = "양송이수프-1,양송이수프-2";
+        assertThatThrownBy(() -> Parser.convertStringToMap(input)).isInstanceOf(
+            IllegalArgumentException.class);
+    }
 
     @DisplayName("문자열 Map 올바른 형식 테스트 ")
     @ValueSource(strings = {"양송이스프-1,제로콜라-3","제로콜라-1,양송이스프-2,레드와인-1"})
@@ -37,4 +44,5 @@ public class ParserTest {
         assertThat(Parser.convertStringToMap(input))
             .isEqualTo(Map.of("양송이스프", 1, "제로콜라", 1));
     }
+
 }
