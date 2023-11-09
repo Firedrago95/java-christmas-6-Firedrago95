@@ -17,11 +17,18 @@ public class Parser {
         throws IllegalArgumentException {
         validateEmpty(order);
         validateFormat(order);
+        return getMap(order);
+    }
 
-        return Arrays.stream(order.split(","))
-            .map(menu -> menu.split("-"))
-            .collect(Collectors.toMap(menuInfo -> menuInfo[0],
-                menuInfo -> Integer.parseInt(menuInfo[1])));
+    private static Map<String, Integer> getMap(String order) throws IllegalArgumentException{
+        try {
+            return Arrays.stream(order.split(","))
+                .map(menu -> menu.split("-"))
+                .collect(Collectors.toMap(menuInfo -> menuInfo[0],
+                    menuInfo -> Integer.parseInt(menuInfo[1])));
+        } catch (IllegalStateException e) {
+            throw new IllegalArgumentException(INVALID_FORM_MESSAGE);
+        }
     }
 
     private static void validateEmpty(String order) throws IllegalArgumentException {
