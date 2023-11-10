@@ -43,6 +43,14 @@ public class OrderValidator {
         }
     }
 
-   
+    private static void validateNumberRange(Map<String, Integer> order)
+        throws IllegalArgumentException{
+        boolean allQuantitiesValid = order.values().stream()
+            .allMatch(quantity -> quantity >= 1);
+
+        if (!allQuantitiesValid) {
+            throw new IllegalArgumentException(INVALID_ORDER);
+        }
+    }
 
 }
