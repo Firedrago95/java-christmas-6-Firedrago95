@@ -1,11 +1,13 @@
 package christmas.Domain;
 
+import java.util.Map;
+
 public class Price {
 
     public static final int MIN_EVENT_PRICE = 10000;
     public static final int MIN_GIFT_PRICE = 120000;
     private final int totalPrice;
-    private final int dicountPrice;
+    private int dicountPrice;
 
     public Price(int totalPrice) {
         this.totalPrice = totalPrice;
@@ -20,5 +22,17 @@ public class Price {
     public boolean isEligibleForGift() {
         if (totalPrice >= MIN_GIFT_PRICE) {return true;}
         return false;
+    }
+
+    public int calculateTotalDiscount(Map<String,Integer> appliedDiscount, boolean isEligibleGift) {
+        int totalDiscount = appliedDiscount.values()
+            .stream()
+            .mapToInt(Integer::intValue)
+            .sum();
+        if (isEligibleGift) {
+            totalDiscount += 25000;
+        }
+        this.dicountPrice = totalDiscount;
+        return totalDiscount;
     }
 }
