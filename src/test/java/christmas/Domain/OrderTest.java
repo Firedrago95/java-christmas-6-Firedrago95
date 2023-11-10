@@ -66,18 +66,4 @@ public class OrderTest {
 
         assertThat(order.countMainItems()).isEqualTo(4);
     }
-
-    @Test
-    @DisplayName("샴페인 포함 확인 테스트")
-    public void hasChampagneTest() {
-        Map<String,Integer> orderedMenu = Map.of(
-            "티본스테이크",2,
-            "바비큐립",2,
-            "샴페인",1
-        );
-
-        Order order = new Order(orderedMenu);
-
-        assertTrue(order.hasChampagne());
-    }
 }

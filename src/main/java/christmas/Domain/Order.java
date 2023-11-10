@@ -50,9 +50,4 @@ public class Order {
             .mapToInt(Map.Entry::getValue)
             .sum();
     }
-
-    public boolean hasChampagne() {
-        return order.keySet().stream()
-            .anyMatch(menu -> Menu.샴페인.getName().equals(menu.getName()));
-    }
 }
