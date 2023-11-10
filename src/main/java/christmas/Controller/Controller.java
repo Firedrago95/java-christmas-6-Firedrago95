@@ -33,6 +33,7 @@ public class Controller {
         OutputView.printTotalBenefit(
             price.calculateTotalBenefit(appliedDiscount, isEligibleForGift));
         OutputView.printTotalPayment(price.calculateTotalPayment(isEligibleForGift));
+        OutputView.printBadge(price.getBadge());
     }
 
     private static Date createDate() {
