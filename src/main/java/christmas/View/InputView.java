@@ -1,6 +1,7 @@
 package christmas.View;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.Domain.Date;
 import christmas.Util.Parser;
 
 public class InputView {
@@ -15,7 +16,7 @@ public class InputView {
             System.out.println(REQUEST_VISIT_DAY);
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            System.out.println(Parser.EMPTY_VALUE_MESSAGE);
+            System.out.println(Date.INVALID_RANGE);
             return requestVisitDay();
         }
     }
