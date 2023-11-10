@@ -63,4 +63,10 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    public static void printTotalDiscount(int totalDiscount) {
+        System.out.println("<총혜택 금액>");
+        System.out.println("-"+convertFormatted(totalDiscount));
+        System.out.println();
+    }
 }

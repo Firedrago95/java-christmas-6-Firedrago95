@@ -29,7 +29,9 @@ public class Controller {
         Discount discount = new Discount();
         Map<String, Integer> appliedDiscount = discount.applyDiscount(visitDay,
             order.countDessertItems(), order.countMainItems());
-        OutputView.printDiscount(appliedDiscount,isEligibleForGift);
+        OutputView.printDiscount(appliedDiscount, isEligibleForGift);
+        OutputView.printTotalDiscount(
+            price.calculateTotalDiscount(appliedDiscount, isEligibleForGift));
     }
 
     private static Date createDate() {
