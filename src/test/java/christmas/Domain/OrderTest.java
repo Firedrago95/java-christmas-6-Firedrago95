@@ -3,6 +3,7 @@ package christmas.Domain;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -64,5 +65,19 @@ public class OrderTest {
         Order order = new Order(orderedMenu);
 
         assertThat(order.countMainItems()).isEqualTo(4);
+    }
+
+    @Test
+    @DisplayName("샴페인 포함 확인 테스트")
+    public void hasChampagneTest() {
+        Map<String,Integer> orderedMenu = Map.of(
+            "티본스테이크",2,
+            "바비큐립",2,
+            "샴페인",1
+        );
+
+        Order order = new Order(orderedMenu);
+
+        assertTrue(order.hasChampagne());
     }
 }
