@@ -1,10 +1,8 @@
 package christmas.Domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForClassTypes.in;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,4 +39,14 @@ public class OrderTest {
             IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("주문 수량 1이하인 경우 예외발생 테스트")
+    public void orderNumberRangeTest() {
+        Map<String, Integer> invalidOrder = new HashMap<>();
+        invalidOrder.put("제로콜라",0);
+        invalidOrder.put("양송이수프",1);
+
+        assertThatThrownBy(() -> new Order(invalidOrder)).isInstanceOf(
+            IllegalArgumentException.class);
+    }
 }
