@@ -1,9 +1,11 @@
 package christmas.Domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,7 +44,23 @@ public class PriceTest {
 
         Price price = new Price(10000);
 
-        assertThat(price.calculateTotalDiscount(appliedDiscount, isEligibleForGift))
+        assertThat(price.calculateTotalBenefit(appliedDiscount, isEligibleForGift))
             .isEqualTo(31246);
+    }
+
+    @Test
+    @DisplayName("총 지불금액 계산 테스트")
+    public void calculateTotalPaymentTest() {
+        Price price = new Price(150000);
+        Map<String, Integer> appliedDiscount = new HashMap<>();
+        appliedDiscount.put("크리스마스 디데이 할인", 10000);
+        appliedDiscount.put("평일 할인", 5000);
+        boolean isEligibleGift = true;
+
+        price.calculateTotalBenefit(appliedDiscount, isEligibleGift);
+        int totalPayment = price.calculateTotalPayment(isEligibleGift);
+
+        int expectedTotalPayment = 135000;
+        assertEquals(expectedTotalPayment, totalPayment);
     }
 }
