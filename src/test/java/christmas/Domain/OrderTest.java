@@ -1,5 +1,6 @@
 package christmas.Domain;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -35,5 +36,19 @@ public class OrderTest {
         int expectedResult = 67000;
 
         assertEquals(result,expectedResult);
+    }
+
+    @Test
+    @DisplayName("dessert 개수 구하기 테스트")
+    public void countDessertItemsTest() {
+        Map<String,Integer> orderedMenu = Map.of(
+            "초코케이크",2,
+            "아이스크림",3,
+            "양송이수프",3
+        );
+
+        Order order = new Order(orderedMenu);
+
+        assertThat(order.countDessertItems()).isEqualTo(5);
     }
 }
