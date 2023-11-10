@@ -43,5 +43,11 @@ public class Order {
             .sum();
     }
 
-
+    public int countMainItems() {
+        return order.entrySet().stream()
+            .filter(
+                entry -> entry.getKey() != null && "main".equals(entry.getKey().getCategory()))
+            .mapToInt(Map.Entry::getValue)
+            .sum();
+    }
 }
