@@ -17,4 +17,14 @@ public class PriceTest {
         assertTrue(validPrice.isEventOn());
         assertFalse(invalidPrice.isEventOn());
     }
+
+    @Test
+    @DisplayName("증정품 여부 확인 테스트")
+    public void isEligibleForGiftTest() {
+        Price validPrice = new Price(120000);
+        Price invalidPrice = new Price(119999);
+
+        assertTrue(validPrice.isEligibleForGift());
+        assertFalse(invalidPrice.isEligibleForGift());
+    }
 }
