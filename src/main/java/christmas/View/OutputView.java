@@ -22,4 +22,24 @@ public class OutputView {
     private String convertFormatted(int number) {
         return String.format("%,d", number);
     }
+
+    public static void printNoEvent(int totalPrice) {
+        System.out.println("<증정 메뉴>");
+        printNothing();
+        System.out.println("<혜택 내역>");
+        printNothing();
+        System.out.println("<총혜택 금액>");
+        System.out.println("0원");
+        System.out.println();
+        System.out.println("<할인 후 예상 결제 금액>");
+        System.out.println(totalPrice+"원");
+        System.out.println();
+        System.out.println("<12월 이벤트 배지>");
+        printNothing();
+    }
+
+    private static void printNothing() {
+        System.out.println("없음");
+        System.out.println();
+    }
 }
