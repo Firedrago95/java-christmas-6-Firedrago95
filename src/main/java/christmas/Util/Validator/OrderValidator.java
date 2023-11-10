@@ -17,7 +17,6 @@ public class OrderValidator {
     private static void validateMenu(Map<String, Integer> order) throws IllegalArgumentException {
         boolean isContain = order.keySet().stream()
             .allMatch(Menu::hasContain);
-
         if (!isContain) {
             throw new IllegalArgumentException(INVALID_ORDER);
         }
@@ -27,7 +26,6 @@ public class OrderValidator {
         throws IllegalArgumentException {
         boolean allBeverage = order.keySet().stream()
             .allMatch(Menu::isBeverage);
-
         if (allBeverage) {
             throw new IllegalArgumentException(INVALID_ORDER);
         }
@@ -37,7 +35,6 @@ public class OrderValidator {
         int menuCount = order.values().stream()
             .mapToInt(Integer::intValue)
             .sum();
-
         if (menuCount > 20) {
             throw new IllegalArgumentException(INVALID_ORDER);
         }
@@ -47,7 +44,6 @@ public class OrderValidator {
         throws IllegalArgumentException{
         boolean allQuantitiesValid = order.values().stream()
             .allMatch(quantity -> quantity >= 1);
-
         if (!allQuantitiesValid) {
             throw new IllegalArgumentException(INVALID_ORDER);
         }
