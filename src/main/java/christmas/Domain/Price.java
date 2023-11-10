@@ -7,11 +7,11 @@ public class Price {
     public static final int MIN_EVENT_PRICE = 10000;
     public static final int MIN_GIFT_PRICE = 120000;
     private final int totalPrice;
-    private int dicountPrice;
+    private int benefitPrice;
 
     public Price(int totalPrice) {
         this.totalPrice = totalPrice;
-        dicountPrice = 0;
+        benefitPrice = 0;
     }
 
     public boolean isEventOn() {
@@ -24,7 +24,7 @@ public class Price {
         return false;
     }
 
-    public int calculateTotalDiscount(Map<String,Integer> appliedDiscount, boolean isEligibleGift) {
+    public int calculateTotalBenefit(Map<String,Integer> appliedDiscount, boolean isEligibleGift) {
         int totalDiscount = appliedDiscount.values()
             .stream()
             .mapToInt(Integer::intValue)
@@ -32,7 +32,15 @@ public class Price {
         if (isEligibleGift) {
             totalDiscount += 25000;
         }
-        this.dicountPrice = totalDiscount;
+        this.benefitPrice = totalDiscount;
         return totalDiscount;
+    }
+
+    public int calculateTotalPayment(boolean isEligibleGift) {
+        int totalPayment = totalPrice - benefitPrice;
+        if (isEligibleGift) {
+            totalPayment += 25000;
+        }
+        return totalPayment;
     }
 }
