@@ -5,7 +5,7 @@ import christmas.Domain.Price;
 import christmas.Util.Parser;
 import christmas.View.InputView;
 import christmas.View.OutputView;
-import java.util.Date;
+import christmas.Domain.Date;
 
 public class Controller {
 
