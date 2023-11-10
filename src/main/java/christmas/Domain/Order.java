@@ -34,4 +34,14 @@ public class Order {
             .mapToInt(menu -> menu.getPrice() * order.get(menu))
             .sum();
     }
+
+    public int countDessertItems() {
+        return order.entrySet().stream()
+            .filter(
+                entry -> entry.getKey() != null && "dessert".equals(entry.getKey().getCategory()))
+            .mapToInt(Map.Entry::getValue)
+            .sum();
+    }
+
+
 }
