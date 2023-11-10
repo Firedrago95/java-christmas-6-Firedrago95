@@ -38,4 +38,11 @@ public enum Menu {
         return Arrays.stream(values())
             .anyMatch(menu -> menu.name.equals(menuName) && menu.category.equals("beverage"));
     }
+
+    public static Menu findByName(String menuName) {
+        return Arrays.stream(values())
+            .filter(menu -> menu.name.equals(menuName))
+            .findFirst()
+            .orElse(null);
+    }
 }
