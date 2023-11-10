@@ -63,4 +63,45 @@ public class PriceTest {
         int expectedTotalPayment = 135000;
         assertEquals(expectedTotalPayment, totalPayment);
     }
+
+    @Test
+    @DisplayName("배지 얻기 기능 20000 이상 테스트")
+    public void getBadgeTest() {
+        Price price = new Price(10000);
+        Map<String, Integer> appliedDiscount = new HashMap<>();
+        boolean isEligibleGift = true;
+
+        price.calculateTotalBenefit(appliedDiscount, isEligibleGift);
+        String badge = "산타";
+
+        assertEquals(badge,price.getBadge());
+    }
+
+    @Test
+    @DisplayName("배지 얻기 10000 이상 테스트")
+    public void getBadgeOverTenThousandTest() {
+        Price price = new Price(10000);
+        Map<String, Integer> appliedDiscount = new HashMap<>();
+        appliedDiscount.put("크리스마스 특별 할인",10000);
+        boolean isEligibleGift = false;
+
+        price.calculateTotalBenefit(appliedDiscount, isEligibleGift);
+        String badge = "트리";
+
+        assertEquals(badge,price.getBadge());
+    }
+
+    @Test
+    @DisplayName("배지 얻기 5000 이상 테스트")
+    public void getBadgeOverFiveThousandTest() {
+        Price price = new Price(10000);
+        Map<String, Integer> appliedDiscount = new HashMap<>();
+        appliedDiscount.put("크리스마스 특별 할인",5000);
+        boolean isEligibleGift = false;
+
+        price.calculateTotalBenefit(appliedDiscount, isEligibleGift);
+        String badge = "별";
+
+        assertEquals(badge,price.getBadge());
+    }
 }
