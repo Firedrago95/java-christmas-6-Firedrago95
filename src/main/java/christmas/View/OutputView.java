@@ -56,7 +56,7 @@ public class OutputView {
     public static void printDiscount(Map<String, Integer> appliedDiscount, boolean isEligibleGift) {
         System.out.println("<혜택 내역>");
         for (Map.Entry<String, Integer> entry : appliedDiscount.entrySet()) {
-            System.out.println(entry.getKey() + ": " + "-"+convertFormatted(entry.getValue()));
+            System.out.println(entry.getKey() + ": " + "-"+convertFormatted(entry.getValue())+"원");
         }
         if (isEligibleGift) {
             System.out.println("증정 이벤트: -25,000원");
@@ -64,9 +64,15 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printTotalDiscount(int totalDiscount) {
+    public static void printTotalBenefit(int totalBenefit) {
         System.out.println("<총혜택 금액>");
-        System.out.println("-"+convertFormatted(totalDiscount));
+        System.out.println("-"+convertFormatted(totalBenefit)+"원");
+        System.out.println();
+    }
+
+    public static void printTotalPayment(int totalPayment) {
+        System.out.println("<할인 후 예상 결제 금액>");
+        System.out.println(convertFormatted(totalPayment)+"원");
         System.out.println();
     }
 }
