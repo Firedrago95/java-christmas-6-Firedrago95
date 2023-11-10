@@ -12,13 +12,17 @@ public class Controller {
     public void run() {
         Date date = createDate();
         Order order = createOrder();
+        OutputView.printOrder(order.getOrder());
         int totalPrice = order.calculateTotalPrice();
+        OutputView.printTotalPrice(totalPrice);
         Price price = new Price(totalPrice);
         boolean isEventOn = price.isEventOn();
         if (!isEventOn) {
             OutputView.printNoEvent(totalPrice);
             return;
         }
+        boolean isEligibleForGift = price.isEligibleForGift();
+        OutputView.printGift(isEligibleForGift);
     }
 
     private static Date createDate() {
