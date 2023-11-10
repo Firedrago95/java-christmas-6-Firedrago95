@@ -75,4 +75,9 @@ public class OutputView {
         System.out.println(convertFormatted(totalPayment)+"원");
         System.out.println();
     }
+
+    public static void printBadge(String badge) {
+        System.out.println("<12월 이벤트 배지>");
+        System.out.println(badge);
+    }
 }
