@@ -1,11 +1,13 @@
 package christmas.Controller;
 
+import christmas.Domain.Discount;
 import christmas.Domain.Order;
 import christmas.Domain.Price;
 import christmas.Util.Parser;
 import christmas.View.InputView;
 import christmas.View.OutputView;
 import christmas.Domain.Date;
+import java.util.Map;
 
 public class Controller {
 
@@ -23,6 +25,11 @@ public class Controller {
         }
         boolean isEligibleForGift = price.isEligibleForGift();
         OutputView.printGift(isEligibleForGift);
+        int visitDay = date.getVisitDay();
+        Discount discount = new Discount();
+        Map<String, Integer> appliedDiscount = discount.applyDiscount(visitDay,
+            order.countDessertItems(), order.countMainItems());
+        OutputView.printDiscount(appliedDiscount,isEligibleForGift);
     }
 
     private static Date createDate() {

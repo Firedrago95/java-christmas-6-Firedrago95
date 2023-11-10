@@ -26,6 +26,7 @@ public class OutputView {
         }
         System.out.println("<증정 메뉴>");
         System.out.println("샴페인 1개");
+        System.out.println();
     }
 
     private static String convertFormatted(int number) {
@@ -49,6 +50,17 @@ public class OutputView {
 
     private static void printNothing() {
         System.out.println("없음");
+        System.out.println();
+    }
+
+    public static void printDiscount(Map<String, Integer> appliedDiscount, boolean isEligibleGift) {
+        System.out.println("<혜택 내역>");
+        for (Map.Entry<String, Integer> entry : appliedDiscount.entrySet()) {
+            System.out.println(entry.getKey() + ": " + "-"+convertFormatted(entry.getValue()));
+        }
+        if (isEligibleGift) {
+            System.out.println("증정 이벤트: -25,000원");
+        }
         System.out.println();
     }
 }
