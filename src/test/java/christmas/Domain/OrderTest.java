@@ -51,4 +51,18 @@ public class OrderTest {
 
         assertThat(order.countDessertItems()).isEqualTo(5);
     }
+
+    @Test
+    @DisplayName("main 개수 구하기 테스트")
+    public void countMainItemsTest() {
+        Map<String,Integer> orderedMenu = Map.of(
+            "티본스테이크",2,
+            "바비큐립",2,
+            "양송이수프",3
+        );
+
+        Order order = new Order(orderedMenu);
+
+        assertThat(order.countMainItems()).isEqualTo(4);
+    }
 }
