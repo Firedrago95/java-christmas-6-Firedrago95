@@ -43,4 +43,11 @@ public class Price {
         }
         return totalPayment;
     }
+
+    public String getBadge() {
+        if (benefitPrice >= 20000) {return "산타";}
+        if (benefitPrice >= 10000) {return "트리";}
+        if (benefitPrice >= 5000) {return "별";}
+        return "없음";
+    }
 }
