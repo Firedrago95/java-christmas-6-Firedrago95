@@ -17,4 +17,8 @@ public class Date {
             throw new IllegalArgumentException(INVALID_RANGE);
         }
     }
+
+    public int getVisitDay() {
+        return visitDay;
+    }
 }
