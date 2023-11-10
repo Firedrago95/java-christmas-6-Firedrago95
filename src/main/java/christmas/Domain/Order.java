@@ -25,7 +25,13 @@ public class Order {
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
-    public Map<Menu,Integer> getOrder() {
+    public Map<Menu, Integer> getOrder() {
         return new HashMap<>(order);
+    }
+
+    public int calculateTotalPrice() {
+        return order.keySet().stream()
+            .mapToInt(menu -> menu.getPrice() * order.get(menu))
+            .sum();
     }
 }
