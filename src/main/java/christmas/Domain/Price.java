@@ -1,13 +1,11 @@
 package christmas.Domain;
 
+import christmas.Constant.DiscountPrice;
 import christmas.View.OutputView;
 import java.util.Map;
 
 public class Price {
 
-    public static final int MIN_EVENT_PRICE = 10000;
-    public static final int MIN_GIFT_PRICE = 120000;
-    public static final int CHAMPAGNE_PRICE = 25000;
     public static final int MIN_SANTA_BADGE_PRICE = 20000;
     public static final int MIN_TREE_BADGE_PRICE = 10000;
     public static final int MIN_STAR_BADGE_PRICE = 5000;
@@ -15,7 +13,7 @@ public class Price {
     public static final String TREE = "트리";
     public static final String STAR = "별";
     public static final String NOTHING = "없음";
-    
+
     private final int totalPrice;
     private int benefitPrice;
 
@@ -25,14 +23,14 @@ public class Price {
     }
 
     public boolean isEventOn() {
-        if (totalPrice >= MIN_EVENT_PRICE) {
+        if (totalPrice >= DiscountPrice.MIN_EVENT_PRICE.getPrice()) {
             return true;
         }
         return false;
     }
 
     public boolean isEligibleForGift() {
-        if (totalPrice >= MIN_GIFT_PRICE) {
+        if (totalPrice >= DiscountPrice.MIN_GIFT_PRICE.getPrice()) {
             return true;
         }
         return false;
@@ -44,7 +42,7 @@ public class Price {
             .mapToInt(Integer::intValue)
             .sum();
         if (isEligibleGift) {
-            totalDiscount += CHAMPAGNE_PRICE;
+            totalDiscount += DiscountPrice.CHAMPAGNE_PRICE.getPrice();
         }
         this.benefitPrice = totalDiscount;
         return totalDiscount;
@@ -53,7 +51,7 @@ public class Price {
     public int calculateTotalPayment(boolean isEligibleGift) {
         int totalPayment = totalPrice - benefitPrice;
         if (isEligibleGift) {
-            totalPayment += CHAMPAGNE_PRICE;
+            totalPayment += DiscountPrice.CHAMPAGNE_PRICE.getPrice();
         }
         return totalPayment;
     }
