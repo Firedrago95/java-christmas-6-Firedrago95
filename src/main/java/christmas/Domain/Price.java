@@ -1,18 +1,11 @@
 package christmas.Domain;
 
+import christmas.Constant.Badge;
 import christmas.Constant.DiscountPrice;
 import christmas.View.OutputView;
 import java.util.Map;
 
 public class Price {
-
-    public static final int MIN_SANTA_BADGE_PRICE = 20000;
-    public static final int MIN_TREE_BADGE_PRICE = 10000;
-    public static final int MIN_STAR_BADGE_PRICE = 5000;
-    public static final String SANTA = "산타";
-    public static final String TREE = "트리";
-    public static final String STAR = "별";
-    public static final String NOTHING = "없음";
 
     private final int totalPrice;
     private int benefitPrice;
@@ -57,15 +50,15 @@ public class Price {
     }
 
     public String getBadge() {
-        if (benefitPrice >= MIN_SANTA_BADGE_PRICE) {
-            return SANTA;
+        if (benefitPrice >= Badge.SANTA.getMinPrice()) {
+            return Badge.SANTA.getName();
         }
-        if (benefitPrice >= MIN_TREE_BADGE_PRICE) {
-            return TREE;
+        if (benefitPrice >= Badge.TREE.getMinPrice()) {
+            return Badge.TREE.getName();
         }
-        if (benefitPrice >= MIN_STAR_BADGE_PRICE) {
-            return STAR;
+        if (benefitPrice >= Badge.STAR.getMinPrice()) {
+            return Badge.STAR.getName();
         }
-        return NOTHING;
+        return Badge.NOTHING.getName();
     }
 }
