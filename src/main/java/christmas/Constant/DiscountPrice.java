@@ -1,7 +1,7 @@
 package christmas.Constant;
 
 public enum DiscountPrice {
-    MIN_EVENT_PRICE(100000),
+    MIN_EVENT_PRICE(10000),
     MIN_GIFT_PRICE(120000),
     CHAMPAGNE_PRICE(25000),
     WEEKEND_DISCOUNT(2023),
