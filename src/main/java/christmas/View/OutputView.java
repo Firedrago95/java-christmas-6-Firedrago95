@@ -29,10 +29,6 @@ public class OutputView {
         System.out.println();
     }
 
-    private static String convertFormatted(int number) {
-        return String.format("%,d", number);
-    }
-
     public static void printNoEvent(int totalPrice) {
         System.out.println("<증정 메뉴>");
         printNothing();
@@ -79,5 +75,9 @@ public class OutputView {
     public static void printBadge(String badge) {
         System.out.println("<12월 이벤트 배지>");
         System.out.println(badge);
+    }
+
+    private static String convertFormatted(int number) {
+        return String.format("%,d", number);
     }
 }
