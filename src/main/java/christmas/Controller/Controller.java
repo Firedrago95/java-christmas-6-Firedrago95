@@ -16,11 +16,9 @@ public class Controller {
     Price price;
 
     public void run() {
-        date = createDate();
-        order = createOrder();
-        OutputView.printOrder(order.getOrder());
-        int totalPrice = getTotalPrice();
-        if (hasEvent(totalPrice)) {
+        setUp();
+        getOrder();
+        if (hasEvent()) {
             return;
         }
         boolean isEligibleForGift = hasGift();
@@ -28,6 +26,15 @@ public class Controller {
         getTotalBenefit(isEligibleForGift, appliedDiscount);
         getTotalPayment(isEligibleForGift);
         getChristmasBadge();
+    }
+
+    private void setUp() {
+        date = createDate();
+        order = createOrder();
+    }
+
+    private void getOrder() {
+        OutputView.printOrder(order.getOrder());
     }
 
     private static Date createDate() {
@@ -50,7 +57,8 @@ public class Controller {
         }
     }
 
-    private boolean hasEvent(int totalPrice) {
+    private boolean hasEvent() {
+        int totalPrice = getTotalPrice();
         price = new Price(totalPrice);
         boolean isEventOn = price.isEventOn();
         if (!isEventOn) {
