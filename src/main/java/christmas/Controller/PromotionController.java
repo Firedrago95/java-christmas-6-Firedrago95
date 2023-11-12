@@ -1,106 +1,97 @@
 package christmas.Controller;
 
-import christmas.Domain.Discount;
-import christmas.Domain.Order;
-import christmas.Domain.Price;
+import christmas.Domain.PromotionService;
 import christmas.Util.Parser;
 import christmas.View.InputView;
 import christmas.View.OutputView;
-import christmas.Domain.Date;
-import java.util.Map;
+
 
 public class PromotionController {
 
-    Date date;
-    Order order;
-    Price price;
+    PromotionService promotionService;
 
     public void run() {
-        setUp();
-        getOrder();
-        if (hasEvent()) {
+        setPromotion();
+        printOrderList();
+        printTotalPrice();
+        if (hasNoEvent()) {
+            printNoEvent();
             return;
         }
-        boolean isEligibleForGift = hasGift();
-        Map<String, Integer> appliedDiscount = getDiscount(isEligibleForGift);
-        getTotalBenefit(isEligibleForGift, appliedDiscount);
-        getTotalPayment(isEligibleForGift);
-        getChristmasBadge();
+        printEligibleGift();
+        printAppliedDiscount();
+        printTotalBenefit();
+        printTotalPayment();
+        printChristmasBadge();
     }
 
-    private void setUp() {
-        date = createDate();
-        order = createOrder();
+    private void setPromotion() {
+        setUpService();
+        setDate();
+        setOrder();
     }
 
-    private void getOrder() {
-        OutputView.printOrder(order.getOrder());
+    private void setUpService() {
+        promotionService = new PromotionService();
     }
 
-    private static Date createDate() {
+    private void setDate() {
         try {
-            int inputedDay = InputView.requestVisitDay();
-            return new Date(inputedDay);
+            int visitDay = InputView.requestVisitDay();
+            promotionService.createDate(visitDay);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return createDate();
+            setDate();
         }
     }
 
-    private static Order createOrder() {
+    private void setOrder() {
         try {
-            String inputedOrder = InputView.requestOrder();
-            return new Order(Parser.convertStringToMap(inputedOrder));
+            String orders = InputView.requestOrder();
+            promotionService.createOrder(Parser.convertStringToMap(orders));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return createOrder();
+            setOrder();
         }
     }
 
-    private boolean hasEvent() {
-        int totalPrice = getTotalPrice();
-        price = new Price(totalPrice);
-        boolean isEventOn = price.isEventOn();
+    private void printOrderList() {
+        OutputView.printOrder(promotionService.getOrderList());
+    }
+
+    private void printTotalPrice() {
+        OutputView.printTotalPrice(promotionService.getTotalPrice());
+    }
+
+    private void printNoEvent() {
+        OutputView.printNoEvent(promotionService.getTotalPrice());
+    }
+
+    private boolean hasNoEvent() {
+        boolean isEventOn = promotionService.isEventOn();
         if (!isEventOn) {
-            OutputView.printNoEvent(totalPrice);
             return true;
         }
         return false;
     }
 
-    private boolean hasGift() {
-        boolean isEligibleForGift = price.isEligibleForGift();
-        OutputView.printGift(isEligibleForGift);
-        return isEligibleForGift;
+    private void printEligibleGift() {
+        OutputView.printGift(promotionService.hasGift());
     }
 
-    private Map<String, Integer> getDiscount(boolean isEligibleForGift) {
-        int visitDay = date.getVisitDay();
-        Discount discount = new Discount();
-        Map<String, Integer> appliedDiscount = discount.applyDiscount(visitDay,
-            order.countDessertItems(), order.countMainItems());
-        OutputView.printDiscount(appliedDiscount, isEligibleForGift);
-        return appliedDiscount;
+    private void printAppliedDiscount() {
+        OutputView.printDiscount(promotionService.getDiscount(), promotionService.hasGift());
     }
 
-    private void getTotalBenefit(boolean isEligibleForGift, Map<String, Integer> appliedDiscount) {
-        int totalBenefit = price.calculateTotalBenefit(appliedDiscount, isEligibleForGift);
-        OutputView.printTotalBenefit(totalBenefit);
+    private void printTotalBenefit() {
+        OutputView.printTotalBenefit(promotionService.getTotalBenefit());
     }
 
-    private int getTotalPrice() {
-        int totalPrice = order.calculateTotalPrice();
-        OutputView.printTotalPrice(totalPrice);
-        return totalPrice;
+    private void printTotalPayment() {
+        OutputView.printTotalPayment(promotionService.getTotalPayment());
     }
 
-    private void getTotalPayment(boolean isEligibleForGift) {
-        int totalPayment = price.calculateTotalPayment(isEligibleForGift);
-        OutputView.printTotalPayment(totalPayment);
-    }
-
-    private void getChristmasBadge() {
-        String badge = price.getBadge();
-        OutputView.printBadge(badge);
+    private void printChristmasBadge() {
+        OutputView.printBadge(promotionService.getChristmasBadge());
     }
 }
