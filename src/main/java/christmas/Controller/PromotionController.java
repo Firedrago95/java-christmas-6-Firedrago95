@@ -9,7 +9,7 @@ import christmas.View.OutputView;
 import christmas.Domain.Date;
 import java.util.Map;
 
-public class Controller {
+public class PromotionController {
 
     Date date;
     Order order;
