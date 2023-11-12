@@ -6,6 +6,8 @@ import java.util.Map;
 public class OrderValidator {
 
     public static final String INVALID_ORDER = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
+    public static final int MAX_ORDER = 20;
+    public static final int MIN_ORDER_QUANTITY = 1;
 
     public static void validateOrder(Map<String, Integer> order) throws IllegalArgumentException {
         validateMenu(order);
@@ -35,7 +37,7 @@ public class OrderValidator {
         int menuCount = order.values().stream()
             .mapToInt(Integer::intValue)
             .sum();
-        if (menuCount > 20) {
+        if (menuCount > MAX_ORDER) {
             throw new IllegalArgumentException(INVALID_ORDER);
         }
     }
@@ -43,7 +45,7 @@ public class OrderValidator {
     private static void validateNumberRange(Map<String, Integer> order)
         throws IllegalArgumentException{
         boolean allQuantitiesValid = order.values().stream()
-            .allMatch(quantity -> quantity >= 1);
+            .allMatch(quantity -> quantity >= MIN_ORDER_QUANTITY);
         if (!allQuantitiesValid) {
             throw new IllegalArgumentException(INVALID_ORDER);
         }
