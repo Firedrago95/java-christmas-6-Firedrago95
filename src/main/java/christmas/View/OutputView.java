@@ -65,10 +65,7 @@ public class OutputView {
                     discount.getKey() + ": " + "-" + convertFormatted(discount.getValue()) + CURRENCY);
             }
         }
-        if (isEligibleGift) {
-            System.out.println(CHAMPAGNE_AMOUNT_MESSAGE);
-        }
-        System.out.println();
+        printGiftAmount(isEligibleGift);
     }
 
     public static void printTotalBenefit(int totalBenefit) {
@@ -90,6 +87,13 @@ public class OutputView {
 
     private static void printNothing() {
         System.out.println(NOTHING);
+        System.out.println();
+    }
+
+    private static void printGiftAmount(boolean isEligibleGift) {
+        if (isEligibleGift) {
+            System.out.println(CHAMPAGNE_AMOUNT_MESSAGE);
+        }
         System.out.println();
     }
 
