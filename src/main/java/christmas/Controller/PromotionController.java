@@ -8,7 +8,7 @@ import christmas.View.OutputView;
 
 public class PromotionController {
 
-    PromotionService promotionService;
+    private PromotionService promotionService;
 
     public void run() {
         setPromotion();

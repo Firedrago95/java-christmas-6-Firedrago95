@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class PromotionService {
 
-    Date date;
-    Order order;
-    Price price;
+    private Date date;
+    private Order order;
+    private Price price;
 
     public void createDate(int visitDay) throws IllegalArgumentException {
         date = new Date(visitDay);
