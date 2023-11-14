@@ -64,13 +64,17 @@ public class OutputView {
             printNothing();
             return;
         }
+        printDiscountList(appliedDiscount);
+        printGiftAmount(isEligibleGift);
+    }
+
+    private static void printDiscountList(Map<String, Integer> appliedDiscount) {
         for (Map.Entry<String, Integer> discount : appliedDiscount.entrySet()) {
             if (discount.getValue() != ZERO) {
                 System.out.println(
                     discount.getKey()+": " + "-" +convertFormatted(discount.getValue()) + CURRENCY);
             }
         }
-        printGiftAmount(isEligibleGift);
     }
 
     private static int sumTotalDiscount(Map<String, Integer> appliedDiscount) {
