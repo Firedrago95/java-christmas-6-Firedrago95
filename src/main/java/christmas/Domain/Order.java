@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 
 public class Order {
 
+    public static final String DESSERT = "dessert";
+    public static final String MAIN = "main";
+
     private final Map<Menu, Integer> order;
 
     public Order(Map<String, Integer> order) throws IllegalArgumentException {
@@ -38,7 +41,7 @@ public class Order {
     public int countDessertItems() {
         return order.entrySet().stream()
             .filter(
-                entry -> entry.getKey() != null && "dessert".equals(entry.getKey().getCategory()))
+                entry -> entry.getKey() != null && DESSERT.equals(entry.getKey().getCategory()))
             .mapToInt(Map.Entry::getValue)
             .sum();
     }
@@ -46,7 +49,7 @@ public class Order {
     public int countMainItems() {
         return order.entrySet().stream()
             .filter(
-                entry -> entry.getKey() != null && "main".equals(entry.getKey().getCategory()))
+                entry -> entry.getKey() != null && MAIN.equals(entry.getKey().getCategory()))
             .mapToInt(Map.Entry::getValue)
             .sum();
     }

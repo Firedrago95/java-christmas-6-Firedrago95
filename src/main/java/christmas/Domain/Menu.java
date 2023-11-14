@@ -16,6 +16,7 @@ public enum Menu {
     레드와인("레드와인", 60000, "beverage"),
     샴페인("샴페인", 25000, "beverage");
 
+    public static final String BEVERAGE = "beverage";
     private final String name;
     private final int price;
     private final String category;
@@ -33,7 +34,7 @@ public enum Menu {
 
     public static boolean isBeverage(String menuName) {
         return Arrays.stream(values())
-            .anyMatch(menu -> menu.name.equals(menuName) && menu.category.equals("beverage"));
+            .anyMatch(menu -> menu.name.equals(menuName) && menu.category.equals(BEVERAGE));
     }
 
     public static Menu findByName(String menuName) {
