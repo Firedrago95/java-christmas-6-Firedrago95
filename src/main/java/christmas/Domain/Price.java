@@ -2,7 +2,6 @@ package christmas.Domain;
 
 import christmas.Constant.Badge;
 import christmas.Constant.DiscountPrice;
-import christmas.View.OutputView;
 import java.util.Map;
 
 public class Price {
