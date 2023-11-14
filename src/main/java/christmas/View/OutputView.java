@@ -72,7 +72,8 @@ public class OutputView {
         for (Map.Entry<String, Integer> discount : appliedDiscount.entrySet()) {
             if (discount.getValue() != ZERO) {
                 System.out.println(
-                    discount.getKey()+": " + "-" +convertFormatted(discount.getValue()) + CURRENCY);
+                    discount.getKey() + ": " + "-" + convertFormatted(discount.getValue())
+                        + CURRENCY);
             }
         }
     }
@@ -87,6 +88,7 @@ public class OutputView {
         }
         System.out.println();
     }
+
     public static void printTotalBenefit(int totalBenefit) {
         System.out.println(BENEFIT_AMOUNT_MESSAGE);
         System.out.println("-" + convertFormatted(totalBenefit) + CURRENCY);
@@ -104,7 +106,7 @@ public class OutputView {
         System.out.println(badge);
     }
 
-        private static void printNothing() {
+    private static void printNothing() {
         System.out.println(NOTHING);
         System.out.println();
     }
