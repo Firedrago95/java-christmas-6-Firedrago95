@@ -1,5 +1,6 @@
 package christmas.Domain;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -31,5 +32,14 @@ public class MenuTest {
             assertTrue(Menu.isBeverage(input));
         }
         assertFalse(Menu.isBeverage(invalidInput));
+    }
+
+    @Test
+    @DisplayName("메뉴 이름으로 메뉴찾기 테스트")
+    public void findByNameTest() {
+        String menuNameToFind = "초코케이크";
+        Menu chocoCake = Menu.초코케이크;
+
+        assertThat(Menu.findByName(menuNameToFind)).isEqualTo(chocoCake);
     }
 }
