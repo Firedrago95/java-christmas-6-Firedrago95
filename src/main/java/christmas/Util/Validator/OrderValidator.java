@@ -43,7 +43,7 @@ public class OrderValidator {
     }
 
     private static void validateNumberRange(Map<String, Integer> order)
-        throws IllegalArgumentException{
+        throws IllegalArgumentException {
         boolean allQuantitiesValid = order.values().stream()
             .allMatch(quantity -> quantity >= MIN_ORDER_QUANTITY);
         if (!allQuantitiesValid) {

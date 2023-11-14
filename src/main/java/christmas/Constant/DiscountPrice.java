@@ -12,8 +12,12 @@ public enum DiscountPrice {
 
     private final int price;
 
-    DiscountPrice(int price) {this.price = price;}
+    DiscountPrice(int price) {
+        this.price = price;
+    }
 
-    public int getPrice() {return price;}
+    public int getPrice() {
+        return price;
+    }
 
 }
