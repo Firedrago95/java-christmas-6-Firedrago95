@@ -104,4 +104,17 @@ public class PriceTest {
 
         assertEquals(badge,price.getBadge());
     }
+    @Test
+    @DisplayName("없음 배지 테스트")
+    public void getNothingBadgeTest() {
+        Price price = new Price(10000);
+        Map<String, Integer> appliedDiscount = new HashMap<>();
+        appliedDiscount.put("평일 할인",2023);
+        boolean isEligibleGift = false;
+
+        price.calculateTotalBenefit(appliedDiscount, isEligibleGift);
+        String badge = "없음";
+
+        assertEquals(badge,price.getBadge());
+    }
 }
