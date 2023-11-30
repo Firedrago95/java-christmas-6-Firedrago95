@@ -2,7 +2,8 @@ package christmas.util;
 
 public enum ExceptionMessage {
     NULL_OR_EMPTY("[ERROR] 값을 입력해주세요"),
-    INVALID_FORM("[ERROR] 형식에 맞는 값을 입력해주세요");
+    INVALID_FORM("[ERROR] 형식에 맞는 값을 입력해주세요"),
+    INVALID_DATE("[ERROR] 1 ~ 31 사이의 날짜를 입력해주세요");
 
     private final String message;
 
