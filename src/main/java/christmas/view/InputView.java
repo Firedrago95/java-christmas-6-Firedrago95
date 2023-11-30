@@ -1,11 +1,8 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.util.InputValidator;
+import christmas.util.validator.InputValidator;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
