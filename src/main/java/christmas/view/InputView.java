@@ -1,6 +1,7 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.util.ExceptionMessage;
 import christmas.util.validator.InputValidator;
 import java.util.Arrays;
 import java.util.Map;
@@ -21,18 +22,26 @@ public class InputView {
 
     public static int readDate() throws IllegalArgumentException {
         System.out.println(ConsoleMessage.REQUEST_DATE.message);
-        String input = Console.readLine();
+        String input = Console.readLine().trim();
         InputValidator.validateDate(input);
         return Integer.parseInt(input);
     }
 
     public static Map<String, Integer> readOrder() throws IllegalArgumentException {
         System.out.println(ConsoleMessage.REQUEST_ORDER.message);
-        String input = Console.readLine();
+        String input = Console.readLine().trim();
         InputValidator.validateOrder(input);
-        return Arrays.stream(input.split(","))
-            .map(menu -> menu.split("-"))
-            .collect(Collectors.toMap(menuInfo -> menuInfo[0],
-                menuInfo -> Integer.parseInt(menuInfo[1])));
+        return convertStringToMap(input);
+    }
+
+    private static Map<String, Integer> convertStringToMap(String input) {
+        try {
+            return Arrays.stream(input.split(","))
+                .map(menu -> menu.split("-"))
+                .collect(Collectors.toMap(menuInfo -> menuInfo[0],
+                    menuInfo -> Integer.parseInt(menuInfo[1])));
+        } catch (IllegalStateException e) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_ORDER.getMessage());
+        }
     }
 }
