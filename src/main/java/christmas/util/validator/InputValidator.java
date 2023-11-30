@@ -1,5 +1,6 @@
-package christmas.util;
+package christmas.util.validator;
 
+import christmas.util.ExceptionMessage;
 import java.util.regex.Pattern;
 
 public class InputValidator {
@@ -19,13 +20,13 @@ public class InputValidator {
 
     private static void validateOrderForm(String input) throws IllegalArgumentException {
         if (!orderRegex.matcher(input).matches()) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_FORM.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_ORDER.getMessage());
         }
     }
 
     private static void validateDateForm(String input) throws IllegalArgumentException {
         if (!dateRegex.matcher(input).matches()) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_FORM.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_DATE.getMessage());
         }
     }
 
