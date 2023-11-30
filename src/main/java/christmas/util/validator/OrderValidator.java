@@ -26,7 +26,7 @@ public class OrderValidator {
         Set keySet = order.keySet();
         int menuCount = (int)keySet.stream().count();
 
-        if (keySet.size() != menuCount) {
+        if (order.size() != menuCount) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_ORDER.getMessage());
         }
     }
