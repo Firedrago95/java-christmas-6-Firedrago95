@@ -1,6 +1,8 @@
 package christmas.model;
 
 import christmas.util.validator.OrderValidator;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -22,5 +24,12 @@ public class Order {
                 return Map.entry(menu, menuCount);
             })
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+
+    public String getOrderList() {
+        StringBuilder orderList = new StringBuilder();
+        order.forEach(
+            (menuName, quantity) -> orderList.append(menuName + " " + quantity + "개" + "\n"));
+        return orderList.toString();
     }
 }

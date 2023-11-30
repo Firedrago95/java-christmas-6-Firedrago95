@@ -12,4 +12,7 @@ public class Date {
         this.visitDate = visitDate;
     }
 
+    public int getDate() {
+        return visitDate;
+    }
 }

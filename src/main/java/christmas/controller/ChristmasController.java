@@ -2,6 +2,7 @@ package christmas.controller;
 
 import christmas.model.ChristmasService;
 import christmas.view.InputView;
+import christmas.view.OutputView;
 import java.util.Map;
 
 public class ChristmasController {
@@ -11,6 +12,7 @@ public class ChristmasController {
     public void run() {
         setDate();
         setOrder();
+        printOrderList();
     }
 
     private void setOrder() {
@@ -31,5 +33,9 @@ public class ChristmasController {
             System.out.println(e.getMessage());
             setDate();
         }
+    }
+
+    private void printOrderList() {
+        OutputView.printOrderList(service.getOrderList(), service.getDate());
     }
 }

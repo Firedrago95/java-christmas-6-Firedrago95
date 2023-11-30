@@ -35,8 +35,8 @@ public enum Menu {
     public static boolean checkAllBeverage(String menuName) {
         return Arrays.stream(values())
             .anyMatch(
-                menu -> menu.name.equals(menuName) && menu.category.equals(
-                    Category.음료.getCategory()));
+                menu -> menu.name.equals(menuName)
+                    && menu.category.equals(Category.음료.getCategory()));
     }
 
     public static Menu findByName(String menuName) {

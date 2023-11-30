@@ -13,4 +13,12 @@ public class ChristmasService {
     public void createOrder(Map<String, Integer> order) throws IllegalArgumentException {
         this.order = new Order(order);
     }
+
+    public String getOrderList() {
+        return order.getOrderList();
+    }
+
+    public int getDate() {
+        return visitDate.getDate();
+    }
 }
