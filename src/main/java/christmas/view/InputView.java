@@ -1,6 +1,7 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.util.InputValidator;
 
 public class InputView {
 
@@ -11,7 +12,7 @@ public class InputView {
 
         ConsoleMessage(String message) {this.message = message;}
     }
-    public int readDate() throws IllegalArgumentException {
+    public static int readDate() throws IllegalArgumentException {
         System.out.println(ConsoleMessage.REQUEST_DATE_MESSAGE.message);
         String input = Console.readLine();
         InputValidator.validateDate(input);
